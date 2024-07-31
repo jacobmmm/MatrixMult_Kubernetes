@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: matrix-mult-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: matrix-mult
+  template:
+    metadata:
+      labels:
+        app: matrix-mult
+    spec:
+      containers:
+      - name: matrix-mult
+        image: jacobmamm93/matrixmult:v1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "512Mi"
+          limits:
+            cpu: "500m"
